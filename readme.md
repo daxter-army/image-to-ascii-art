@@ -14,10 +14,12 @@
 
 <table>
     <tr>
-        <td>**One** Homepage UI</td>
+        <td><strong>Fig-1</strong> Homepage UI</td>
+        <td><strong>Fig-2</strong> Homepage UI</td>
     </tr>
     <tr>
-        <td>![SI_2](./screenshots/cartyre.jpg)</td>
+        <td valign="top"><img src="screenshots/ui_1.png"></td>
+        <td valign="top"><img src="screenshots/ui_2.png"></td>
     </tr>
 </table>
 
