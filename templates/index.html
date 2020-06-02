@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagescii | Image To Ascii Art Convertor</title>
+    <link rel="icon" href="../static/style/favicon_1.png" type="image/gif" sizes="192x192">
+    <script src="https://kit.fontawesome.com/5077a37d50.js" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: myFont;
+            src: url('../static/font/dm_sans_bold.ttf');
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	        background-size: 400% 550%;
+            background-repeat: no-repeat;
+	        animation: gradient 10s ease infinite;
+            text-align: center;
+            color: whitesmoke;
+        }
+
+        h1{
+            font-family: myFont;
+            font-size: 80px;
+            margin-top: 20px;
+        }
+
+        h2{
+            margin-bottom:20px;
+        }
+
+        @keyframes gradient {
+	    0% {
+		    background-position: 0% 50%;
+	    }
+	    50% {
+		    background-position: 100% 50%;
+	    }
+	    100% {
+		    background-position: 0% 50%;
+	    }
+    }
+
+    /* Loader */
+        .lds-heart {
+            margin-top:70px;
+            display: none;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            transform: rotate(45deg);
+            transform-origin: 40px 40px;
+        }
+
+        .lds-heart div {
+            top: 32px;
+            left: 32px;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .lds-heart div:after,
+        .lds-heart div:before {
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+        }
+
+        .lds-heart div:before {
+            left: -24px;
+            border-radius: 50% 0 0 50%;
+        }
+
+        .lds-heart div:after {
+            top: -24px;
+            border-radius: 50% 50% 0 0;
+        }
+
+        @keyframes lds-heart {
+            0% {
+                transform: scale(0.95);
+            }
+            5% {
+                transform: scale(1.1);
+            }
+            39% {
+                transform: scale(0.85);
+            }
+            45% {
+                transform: scale(1);
+            }
+            60% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(0.9);
+            }
+        }
+
+        /* error message */
+        #error-message{
+            background-color: tomato;
+            margin:0;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .footer{
+            position: fixed;
+            left:0;
+            bottom:0;
+            width: 100%;
+        }
+
+        #credits{
+            background-color: #303030;
+            margin:0;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        .wrapper{
+            margin-left: auto;
+            margin-right: auto;
+            border: #e8e8e8 1.5px solid;
+            padding-bottom: 25px;
+            border-radius: 5px;
+            width: 30rem;
+            box-sizing: border-box;
+        }
+
+        #submit-button{
+            background-color: #303030;
+            color: white;
+            border: 2px #303030 solid;
+            border-radius: 3px;
+            padding:5px 10px;
+            cursor: pointer;
+        }
+
+        #loading-text{
+            display:none;
+        }
+
+        a{
+            text-decoration: none;
+            color:white;
+            background-color: #505050;
+            padding: 8px;
+            transition: 0.2s;
+        }
+
+        a:hover{
+            color: #505050;
+            background-color: white;
+        }
+
+        /* Close button */
+        .closebtn {
+            margin-left: -15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 30px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-right: tomato 10px solid;
+        }
+
+        .closebtn:hover {
+            color: #303030;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Imagescii</h1>
+    <h2>Image <i class="fas fa-arrow-circle-right"></i> Ascii Art</h2>
+    <p id="p-one">Convert High Resolution Images into Amazing Ascii Art Images</p>
+    <br><br>
+    <div class="wrapper">
+        <p id='p-two' style="font-size:20px;">Choose your file...</p>
+        <p id='p-three'>Supports .jpeg, .jpg & .png formats</p>
+        <br><br>
+        <form id="submit-image" action = "{{ url_for('process') }}" method = "POST" enctype="multipart/form-data">
+            <input type="file" id="upload-image" name="upload-image" accept="image/*" required>
+            <button id = "submit-button">Submit</button>
+        </form>
+    </div>
+
+    <div class="lds-heart"><div></div></div><p id="loading-text" style="margin-top:-1px;">Hold on</p>
+
+    <div class="footer">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div id='error-message'>
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <p id=credits><i class="fas fa-code"></i> with <i class="fas fa-heart"></i> by Mehul Singh Teya <a href="https://daxter-army.github.io/mehulsinghteya.github.io/image-to-ascii/" target="_blank">Github Repository</a></p>
+    </div>
+    <script>
+        const $submitButton = document.getElementById('submit-button')
+        
+        $submitButton.addEventListener('click', (event) => {
+
+            const fileName = document.getElementById('upload-image').value
+            const extension = fileName.split('.').pop()
+
+            if(extension == 'png' || extension == 'jpg' || extension == 'jpeg'){
+                // display loader
+                document.querySelector('.lds-heart').style.display = 'inline-block'
+                document.getElementById('loading-text').style.display = 'block'
+            }
+        })
+    </script>
+</body>
+</html>

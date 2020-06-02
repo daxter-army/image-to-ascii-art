@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagescii | Result Image</title>
+    <link rel="icon" href="../static/style/favicon_2.png" type="image/gif" sizes="192x192">
+    <script src="https://kit.fontawesome.com/5077a37d50.js" crossorigin="anonymous"></script>
+    <style>
+        @font-face {
+            font-family: myFont;
+            src: url('../static/font/dm_sans_bold.ttf');
+        }
+
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	        background-size: 400% 550%;
+            background-repeat: no-repeat;
+	        animation: gradient 10s ease infinite;
+            text-align: center;
+            color: whitesmoke;
+        }
+
+        h1{
+            font-family: myFont;
+            font-size: 80px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2{
+            margin-bottom:20px;
+        }
+
+        @keyframes gradient {
+	        0%{
+		        background-position: 0% 50%;
+	        }
+	        50%{
+		        background-position: 100% 50%;
+	        }
+	        100%{
+		        background-position: 0% 50%;
+	        }
+        }
+
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+        #art{
+            display: block;
+            margin: auto;
+            width: 75%;
+        }
+
+        #download-link{
+            padding:10px;
+            background-color: transparent;
+            border:yellowgreen 2px solid;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        #download-link:hover{
+            background-color: yellowgreen;
+        }
+
+        #download-link, #home-link{
+            color: white;
+            text-decoration: none;
+        }
+
+        #download-button{
+            background: none;
+            border: none;
+        }
+
+        .footer{
+            position: fixed;
+            left:0;
+            bottom:0;
+            width: 100%;
+        }
+
+        #credits{
+            background-color: #303030;
+            margin:0;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+        #github-link{
+            text-decoration: none;
+            color:white;
+            background-color: #505050;
+            padding: 8px;
+            transition: 0.2s;
+        }
+
+        #github-link:hover{
+            color: #505050;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><a id="home-link" href="/">Imagescii</a></h1>
+        <br>
+        <p>Here's your Ascii Art... 👈😎👉</p>
+        <br>
+        <div id='art'>
+            <img src='../static/output/{{ image }}' alt="Ascii Image">
+        </div>
+        <br><br>
+        <button id="download-button" onclick="removeImage()"><a id='download-link' href="../static/output/{{ image }}" download="../static/output/{{ image }}"><i class="fas fa-download"></i> Download Image</a></button>
+        <br><br><br><br><br>
+        <div class="footer">
+            <p id=credits><i class="fas fa-code"></i> with <i class="fas fa-heart"></i> by Mehul Singh Teya <a id="github-link" href="https://daxter-army.github.io/mehulsinghteya.github.io/image-to-ascii/" target="_blank">Github Repository</a></p>
+        </div>
+    </div>
+    <script>
+        function removeImage(){
+            setTimeout(function(){
+                fetch('http://127.0.0.1:5000/delete/{{image}}')
+                .then((response) => {
+                    console.log(response.status)
+                })
+                .catch((error) => {
+                    console.log("Something unusual occured at client while deleting image")
+                })
+                }, 3000
+            )
+        }
+    </script>
+</body>
+</html>
