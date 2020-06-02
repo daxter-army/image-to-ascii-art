@@ -3,7 +3,7 @@
 * A simple & powerful tool that lets you convert, your high definition and high resolution, to amazing ASCII Art image
 
 ## Screenshots & sample results
-![UI_1](ui_1.png)
+![UI_1](./screenshots/ui_1.png) ![UI_2](./screenshots/ui_2.png)
 
 ## Technology Stack
 * Front End
