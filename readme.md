@@ -12,6 +12,15 @@
 ![SI_6](./screenshots/ui_1.png) ![SI_6](./screenshots/ui_2.png)
 ![SI_7](./screenshots/ui_1.png) ![SI_7](./screenshots/ui_2.png)
 
+<table>
+    <tr>
+        <td>Homepage UI</td>
+    </tr>
+    <tr>
+        <td>![SI_2](./screenshots/cartyre.jpg)</td>
+    </tr>
+</table>
+
 ## Technology Stack
 * Front End
     * HTML
