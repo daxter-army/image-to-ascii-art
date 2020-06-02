@@ -41,8 +41,8 @@
         <td><strong>Fig-6.2</strong> Output 4</td>
     </tr>
     <tr>
-        <td valign="top"><img src="screenshots/ui_1.png"></td>
-        <td valign="top"><img src="screenshots/ui_2.png"></td>
+        <td valign="top"><img src="screenshots/rick_and_morty.jpg"></td>
+        <td valign="top"><img src="screenshots/rick_and_morty_output.jpg"></td>
     </tr>
     <tr>
         <td><strong>Fig-7.1</strong> Input 5</td>
@@ -57,12 +57,16 @@
         <td><strong>Fig-8.2</strong> Output 6</td>
     </tr>
     <tr>
+        <td valign="top"><img src="screenshots/landscape.jpg"></td>
+        <td valign="top"><img src="screenshots/landscape_output.jpg"></td>
+    </tr>
+    <tr>
         <td><strong>Fig-9.1</strong> Input 7</td>
         <td><strong>Fig-9.2</strong> Output 7</td>
     </tr>
         <tr>
-        <td valign="top"><img src="screenshots/rick_and_morty.jpg"></td>
-        <td valign="top"><img src="screenshots/rick_and_morty_output.jpg"></td>
+        <td valign="top"><img src="screenshots/philly.jpg"></td>
+        <td valign="top"><img src="screenshots/philly_output.jpg"></td>
     </tr>
 
 
