@@ -8,7 +8,8 @@
     * CSS
     * Javascript
 * Back End
-    * Flask (Python Web Framework)
+    * Flask (Python Web Framework) as Server
+    * Python
 
 ## Run
 * Hit **python server.py** & visit **localhost:5000/**
