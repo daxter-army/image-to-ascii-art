@@ -33,14 +33,9 @@ def process():
         specialChars = ["'","!","@","#","$","%","^","&","*","(",")","_","-","=","+","/","*","-",";",":",">","<",",","?","}","{"]
         for badWord in specialChars:
             fileName = fileName.replace(badWord, "")
-        # Print Filename
-        # print("File Uploaded : " + fileName)
-        
-        #todo Checking Filesize
         
         # Checking File Extensions
         extension = os.path.splitext(fileName)[1]
-        # print("File Extension : " + extension)
 
         if not (extension==".jpeg" or extension==".jpg" or extension==".png"):
             flash('File Format not supported')
@@ -62,15 +57,12 @@ def process():
 
 @app.route('/delete/<filename>')
 def delete(filename):
-    uploadedImage = os.path.join(APP_ROOT, "upload\\%s"%filename)
-    source = os.path.join(APP_ROOT, 'static\\output\\%s'%filename)
-    outputTextFile = os.path.join(APP_ROOT, 'output_ascii_art.txt')
+    uploadedImage = os.path.join(APP_ROOT, "upload\\"+filename)
+    source = os.path.join(APP_ROOT, 'static\\output\\'+filename)
     try:
         if os.path.exists(source):
             os.remove(source)
             os.remove(uploadedImage)
-            os.remove(outputTextFile)
-            # print('Deleted file : %s' % filename)
         else:
             print("Unable to delete")
         return '200'

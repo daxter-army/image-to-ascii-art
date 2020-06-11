@@ -1,9 +1,10 @@
 from PIL import Image, ImageDraw, ImageFont
-import math
+import math, os
 from image_type_convertor import convert
 
+# Path for current file system
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 # If traditional method fails, then change the image format to png/jpg, and then again try
-# import image_compression, image_type_convertor
 # Character array and slice each character
 
 def image_to_ascii(filename):
@@ -21,11 +22,14 @@ def image_to_ascii(filename):
     def getChar(inputInt):
         return charactersArray[math.floor(inputInt*interval)]
 
-    text_file = open("output_ascii_art.txt", "w")
+    # Write output to a text file
+    # text_file = open("output_ascii_art.txt", "w")
     # Open Image
-    im = Image.open("./upload/"+filename)
+    target = os.path.join(APP_ROOT,"upload\\")
+    print(target)
+    im = Image.open(target+filename)
     # Path to font
-    fnt = ImageFont.truetype('C:\\Windows\\Fonts\\lucon.ttf', 15)
+    fnt = ImageFont.truetype(os.path.join(APP_ROOT,"static\\font\\lucon.ttf"), 15)
     # Calculating size
     width, height = im.size
     # Resizing Image
@@ -43,19 +47,12 @@ def image_to_ascii(filename):
             r, g, b = pix[j, i]
             h = int(r/3 + g/3 + b/3)
             pix[j, i] = (h, h, h)
-            text_file.write(getChar(h))
+            # text_file.write(getChar(h))
             d.text((j*oneCharacterWidth, i*oneCharacterHeight), getChar(h), font = fnt, fill = (r, g, b))
 
-        text_file.write('\n')
-    text_file.close()
+        # text_file.write('\n')
+    # text_file.close()
     # Covert to grayscale
     # outputImage.convert('LA')
-    outputImage.save("./static/output/"+filename)
+    outputImage.save(os.path.join(APP_ROOT,"static\\output\\"+filename))
     return filename
-
-    #     print("Converting format & then creating ASCII ART")
-    #     converted = convert(filename)
-    #     print(converted)
-    #     image_to_ascii(converted)
-    #     outputImage.save("./static/output/"+converted)
-    #     return converted
