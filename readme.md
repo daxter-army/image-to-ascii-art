@@ -1,6 +1,6 @@
 # Imagescii
 ### Convert high resolution images to amazing looking Ascii Arts
-* A simple & powerful tool that lets you convert, your high definition and high resolution, to amazing ASCII Art image
+* A simple & powerful tool that lets you convert, your high definition and high resolution images, to amazing ASCII Art images
 
 ## Screenshots & sample results
 <table>
@@ -68,8 +68,6 @@
         <td valign="top"><img src="screenshots/philly.jpg"></td>
         <td valign="top"><img src="screenshots/philly_output.jpg"></td>
     </tr>
-
-
 </table>
 
 ## Technology Stack
